@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog — PEARL Integrative Medicine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory:      #F9F5EF;
+      --cream:      #EEE8DC;
+      --white:      #FFFFFF;
+      --plum:       #2E1A35;
+      --plum-mid:   #4A2D58;
+      --plum-light: #6B4480;
+      --gold:       #C9913A;
+      --gold-lt:    #DBA855;
+      --sage:       #6B8F71;
+      --sage-lt:    #8FB395;
+      --charcoal:   #1E1B18;
+      --gray:       #7A7069;
+      --border:     rgba(46,26,53,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito Sans', sans-serif; background: var(--ivory); color: var(--charcoal); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 300;
+      height: 76px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6vw; background: rgba(249,245,239,0.96);
+      backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    .site-header.scrolled { box-shadow: 0 2px 24px rgba(46,26,53,0.08); }
+    .header-brand { display: flex; flex-direction: column; gap: 1px; }
+    .brand-name { font-family: 'Cormorant', serif; font-size: 1.55rem; font-weight: 700; color: var(--plum); letter-spacing: 0.12em; line-height: 1; }
+    .brand-name span { color: var(--gold); }
+    .brand-full { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray); }
+    .site-nav { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-item { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plum); padding: 0.5rem 1rem; border-radius: 2px; transition: color 0.2s; }
+    .nav-item:hover { color: var(--gold); }
+    .nav-item.active { color: var(--gold); }
+    .nav-cta { background: var(--plum); color: var(--ivory) !important; padding: 0.55rem 1.4rem; border-radius: 3px; margin-left: 0.5rem; }
+    .nav-cta:hover { background: var(--plum-mid) !important; color: var(--ivory) !important; }
+
+    /* BLOG HERO */
+    .blog-hero {
+      padding-top: 76px;
+      background: var(--plum);
+      padding-bottom: 80px;
+      padding-left: 6vw; padding-right: 6vw;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      min-height: 360px; position: relative; overflow: hidden;
+    }
+    .blog-hero::before {
+      content: 'BLOG';
+      position: absolute; right: -2vw; bottom: -4vw;
+      font-family: 'Cormorant', serif; font-size: 18vw; font-weight: 700;
+      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+      line-height: 1; pointer-events: none;
+    }
+    .blog-hero-tag {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--gold-lt); display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.2rem;
+    }
+    .blog-hero-tag::before { content: ''; width: 22px; height: 2px; background: var(--gold-lt); border-radius: 2px; }
+    .blog-hero-title {
+      font-family: 'Cormorant', serif; font-size: clamp(2.4rem, 5vw, 5rem);
+      font-weight: 300; color: white; line-height: 1.05;
+    }
+    .blog-hero-title strong { font-weight: 700; }
+    .blog-hero-sub { font-size: 0.95rem; color: rgba(255,255,255,0.45); margin-top: 1.2rem; max-width: 500px; line-height: 1.7; }
+
+    /* BLOG CONTENT */
+    .blog-content { padding: 80px 6vw; }
+
+    /* Featured post */
+    .featured-post {
+      display: grid; grid-template-columns: 1.2fr 0.8fr;
+      gap: 0; border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+      margin-bottom: 5rem;
+      transition: box-shadow 0.25s;
+    }
+    .featured-post:hover { box-shadow: 0 8px 40px rgba(46,26,53,0.1); }
+    .featured-visual {
+      background: linear-gradient(145deg, var(--plum), var(--plum-mid));
+      min-height: 360px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .featured-visual svg { width: 60%; opacity: 0.15; }
+    .featured-badge {
+      position: absolute; top: 2rem; left: 2rem;
+      background: var(--gold); color: white;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.35rem 0.9rem; border-radius: 2px;
+    }
+    .featured-body {
+      background: white; padding: 3.5rem 3rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .post-meta {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .post-cat {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .post-date { font-size: 0.72rem; color: var(--gray); }
+    .post-title {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+      font-weight: 700; color: var(--plum); line-height: 1.2;
+      margin-bottom: 1.2rem;
+    }
+    .post-excerpt { font-size: 0.88rem; color: var(--gray); line-height: 1.75; margin-bottom: 2rem; }
+    .read-more {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); display: inline-flex; align-items: center; gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+    .read-more:hover { gap: 0.7rem; }
+
+    /* Post grid */
+    .posts-section-title {
+      font-family: 'Cormorant', serif; font-size: 1.1rem; font-weight: 600;
+      color: var(--plum); letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 2.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+    }
+    .posts-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 2rem; margin-bottom: 4rem;
+    }
+    .post-card {
+      display: flex; flex-direction: column;
+      border: 1px solid var(--border); border-radius: 4px;
+      overflow: hidden; transition: box-shadow 0.25s, transform 0.25s;
+      background: white;
+    }
+    .post-card:hover { box-shadow: 0 8px 32px rgba(46,26,53,0.1); transform: translateY(-3px); }
+    .post-card-visual {
+      height: 180px; position: relative; overflow: hidden;
+    }
+    .pcv-1 { background: linear-gradient(135deg, #2E1A35, #6B4480); }
+    .pcv-2 { background: linear-gradient(135deg, #1E2A20, #4A7052); }
+    .pcv-3 { background: linear-gradient(135deg, #2A1F15, #8B5E2A); }
+    .pcv-4 { background: linear-gradient(135deg, #1A2535, #2D4A70); }
+    .pcv-5 { background: linear-gradient(135deg, #35201A, #70402D); }
+    .pcv-6 { background: linear-gradient(135deg, #1A2535, #4A2D58); }
+    .post-card-body { padding: 1.8rem; flex: 1; display: flex; flex-direction: column; }
+    .post-card-body .post-meta { margin-bottom: 0.8rem; }
+    .post-card-body .post-title { font-size: 1.1rem; margin-bottom: 0.8rem; }
+    .post-card-body .post-excerpt { font-size: 0.82rem; flex: 1; margin-bottom: 1.2rem; }
+    .post-card-body .read-more { margin-top: auto; }
+
+    /* FOOTER */
+    .site-footer { background: var(--charcoal); padding: 3rem 6vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand-name { font-family: 'Cormorant', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; }
+    .footer-brand-sub { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 3px; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.18); }
+
+    @media (max-width: 860px) {
+      .featured-post { grid-template-columns: 1fr; }
+      .posts-grid { grid-template-columns: 1fr 1fr; }
+      .site-nav .nav-item:not(.nav-cta) { display: none; }
+    }
+    @media (max-width: 560px) { .posts-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="header-brand">
+    <span class="brand-name">P<span>E</span>ARL</span>
+    <span class="brand-full">Prime Ever Ayurvedic Research Laboratories</span>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html"  class="nav-item">Home</a>
+    <a href="blog.html"   class="nav-item active">Blog</a>
+    <a href="post.html"   class="nav-item">Research</a>
+    <a href="index.html#contact" class="nav-item nav-cta">Contact Us</a>
+  </nav>
+</header>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <div class="blog-hero-tag">Integrative Medicine · Research &amp; Insights</div>
+  <h1 class="blog-hero-title">
+    The PEARL<br><strong>Knowledge Journal</strong>
+  </h1>
+  <p class="blog-hero-sub">Research findings, clinical insights, and the science of integrative medicine from the team at Prime Ever Ayurvedic Research Laboratories.</p>
+</section>
+
+<!-- BLOG CONTENT -->
+<main class="blog-content">
+
+  <!-- Featured -->
+  <a href="post.html" class="featured-post">
+    <div class="featured-visual">
+      <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="120" stroke="rgba(201,145,58,0.6)" stroke-width="0.8"/>
+        <circle cx="150" cy="150" r="80"  stroke="rgba(201,145,58,0.4)" stroke-width="0.8"/>
+        <path d="M150 30C150 30 200 110 150 150C100 110 150 30 150 30Z" stroke="rgba(201,145,58,0.5)" stroke-width="0.8" fill="rgba(201,145,58,0.08)"/>
+        <path d="M150 270C150 270 200 190 150 150C100 190 150 270 150 270Z" stroke="rgba(201,145,58,0.5)" stroke-width="0.8" fill="rgba(201,145,58,0.08)"/>
+        <path d="M30 150C30 150 110 200 150 150C110 100 30 150 30 150Z" stroke="rgba(107,144,113,0.5)" stroke-width="0.8" fill="rgba(107,144,113,0.08)"/>
+        <path d="M270 150C270 150 190 200 150 150C190 100 270 150 270 150Z" stroke="rgba(107,144,113,0.5)" stroke-width="0.8" fill="rgba(107,144,113,0.08)"/>
+        <circle cx="150" cy="150" r="20" stroke="rgba(201,145,58,0.6)" stroke-width="0.8" fill="rgba(201,145,58,0.12)"/>
+      </svg>
+      <div class="featured-badge">Featured Research</div>
+    </div>
+    <div class="featured-body">
+      <div>
+        <div class="post-meta">
+          <span class="post-cat">Anti-Malarial</span>
+          <span class="post-date">July 2018</span>
+        </div>
+        <h2 class="post-title">Cap. Plasmonil at the First Malaria World Congress, Melbourne</h2>
+        <p class="post-excerpt">
+          Dr. Prakash U. Tahiliani presented PEARL's landmark integrative approach to malaria treatment at the First Malaria World Congress in Melbourne, Australia — demonstrating 40,000+ successfully treated cases and a zero adverse effect profile that set Cap. Plasmonil apart from every conventional anti-malarial on the market.
+        </p>
+      </div>
+      <span class="read-more">Read Full Article →</span>
+    </div>
+  </a>
+
+  <!-- Post grid -->
+  <div class="posts-section-title">All Articles</div>
+  <div class="posts-grid">
+
+    <a href="post.html" class="post-card">
+      <div class="post-card-visual pcv-1"></div>
+      <div class="post-card-body">
+        <div class="post-meta"><span class="post-cat">Immunology</span><span class="post-date">Oct 2019</span></div>
+        <h3 class="post-title">Immune Activation vs. Suppression: Why the Paradigm Must Shift</h3>
+        <p class="post-excerpt">How PEARL's Ayurvedic formulations activate rather than suppress immunity — and why this matters in the age of drug resistance.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+    </a>
+
+    <a href="post.html" class="post-card">
+      <div class="post-card-visual pcv-2"></div>
+      <div class="post-card-body">
+        <div class="post-meta"><span class="post-cat">Drug Resistance</span><span class="post-date">Aug 2018</span></div>
+        <h3 class="post-title">The Artemisinin Crisis: What Integrative Medicine Offers Next</h3>
+        <p class="post-excerpt">With resistance spreading to Artemisinin derivatives — previously the last line of defence — the case for integrative Ayurvedic approaches has never been stronger.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+    </a>
+
+    <a href="post.html" class="post-card">
+      <div class="post-card-visual pcv-3"></div>
+      <div class="post-card-body">
+        <div class="post-meta"><span class="post-cat">Blood Rheology</span><span class="post-date">Nov 2017</span></div>
+        <h3 class="post-title">The Overlooked Dimension of Malaria: Blood Rheological Disturbances</h3>
+        <p class="post-excerpt">Most anti-malarials address only the parasite. PEARL's research identifies blood rheological disruption as a critical and often ignored pathological dimension.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+    </a>
+
+    <a href="post.html" class="post-card">
+      <div class="post-card-visual pcv-4"></div>
+      <div class="post-card-body">
+        <div class="post-meta"><span class="post-cat">Gastroenterology</span><span class="post-date">Sep 2019</span></div>
+        <h3 class="post-title">Ultraliv Syrup: Hepatoprotection Through Integrative Botanical Medicine</h3>
+        <p class="post-excerpt">Presented at the World Congress of Gastroenterology, Istanbul — PEARL's integrative approach to liver protection using classical Ayurvedic hepatoprotective herbs.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+    </a>
+
+    <a href="post.html" class="post-card">
+      <div class="post-card-visual pcv-5"></div>
+      <div class="post-card-body">
+        <div class="post-meta"><span class="post-cat">Clinical Record</span><span class="post-date">Jun 2016</span></div>
+        <h3 class="post-title">40,000 Cases: What Four Decades of Anti-Malarial Practice Taught Us</h3>
+        <p class="post-excerpt">A retrospective look at clinical patterns across 40,000+ Plasmonil cases — recurrence rates, immune profiles, and lessons for integrative medicine globally.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+    </a>
+
+    <a href="post.html" class="post-card">
+      <div class="post-card-visual pcv-6"></div>
+      <div class="post-card-body">
+        <div class="post-meta"><span class="post-cat">Diagnosis</span><span class="post-date">Jul 2015</span></div>
+        <h3 class="post-title">ESR as a Diagnostic Tool in Falciparum Malaria: A Clinical Perspective</h3>
+        <p class="post-excerpt">Though non-specific, ESR provides a uniquely useful signal in diagnosing Falciparum malaria — particularly where peripheral smear results are unreliable in 70–80% of cases.</p>
+        <span class="read-more">Read More →</span>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div>
+    <div class="footer-brand-name">PEARL</div>
+    <div class="footer-brand-sub">Prime Ever Ayurvedic Research Laboratories</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="post.html">Research</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2001–2025 PEARL. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>

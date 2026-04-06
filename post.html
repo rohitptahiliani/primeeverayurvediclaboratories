@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cap. Plasmonil at the First Malaria World Congress — PEARL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ivory:      #F9F5EF;
+      --cream:      #EEE8DC;
+      --white:      #FFFFFF;
+      --plum:       #2E1A35;
+      --plum-mid:   #4A2D58;
+      --gold:       #C9913A;
+      --gold-lt:    #DBA855;
+      --sage:       #6B8F71;
+      --charcoal:   #1E1B18;
+      --gray:       #7A7069;
+      --border:     rgba(46,26,53,0.1);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito Sans', sans-serif; background: var(--ivory); color: var(--charcoal); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 300; height: 76px; display: flex; align-items: center; justify-content: space-between; padding: 0 6vw; background: rgba(249,245,239,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); transition: box-shadow 0.3s; }
+    .site-header.scrolled { box-shadow: 0 2px 24px rgba(46,26,53,0.08); }
+    .header-brand { display: flex; flex-direction: column; gap: 1px; }
+    .brand-name { font-family: 'Cormorant', serif; font-size: 1.55rem; font-weight: 700; color: var(--plum); letter-spacing: 0.12em; line-height: 1; }
+    .brand-name span { color: var(--gold); }
+    .brand-full { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gray); }
+    .site-nav { display: flex; align-items: center; gap: 0.5rem; }
+    .nav-item { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--plum); padding: 0.5rem 1rem; border-radius: 2px; transition: color 0.2s; }
+    .nav-item:hover { color: var(--gold); }
+    .nav-item.active { color: var(--gold); }
+    .nav-cta { background: var(--plum); color: var(--ivory) !important; padding: 0.55rem 1.4rem; border-radius: 3px; margin-left: 0.5rem; }
+    .nav-cta:hover { background: var(--plum-mid) !important; }
+
+    /* POST HERO */
+    .post-hero {
+      padding-top: 76px;
+      background: var(--plum);
+      padding: 76px 6vw 0;
+      position: relative; overflow: hidden;
+    }
+    .post-hero-inner {
+      max-width: 860px;
+      padding: 6vh 0 5vh;
+      position: relative; z-index: 2;
+    }
+    .post-hero::before {
+      content: '';
+      position: absolute; bottom: 0; right: -5vw; top: 0;
+      width: 42%;
+      background: linear-gradient(160deg, rgba(201,145,58,0.08), rgba(107,144,113,0.08));
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.6rem;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 2rem;
+    }
+    .breadcrumb a { color: rgba(255,255,255,0.35); transition: color 0.2s; }
+    .breadcrumb a:hover { color: var(--gold-lt); }
+    .breadcrumb-sep { opacity: 0.3; }
+    .post-hero-cat {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold-lt); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.7rem;
+    }
+    .post-hero-cat::before { content: ''; width: 22px; height: 2px; background: var(--gold-lt); border-radius: 2px; }
+    .post-hero-title {
+      font-family: 'Cormorant', serif;
+      font-size: clamp(2.2rem, 4.5vw, 4.5rem);
+      font-weight: 700; color: white; line-height: 1.1;
+      margin-bottom: 2rem;
+    }
+    .post-hero-meta {
+      display: flex; align-items: center; gap: 2rem;
+      padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+    .meta-label { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.28); }
+    .meta-value { font-size: 0.85rem; color: rgba(255,255,255,0.65); font-weight: 600; }
+
+    /* POST LAYOUT */
+    .post-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 5vw;
+      padding: 80px 6vw;
+      align-items: start;
+    }
+
+    /* Article body */
+    .post-article { max-width: 680px; }
+
+    .post-lead {
+      font-family: 'Cormorant', serif;
+      font-size: 1.35rem; font-weight: 400;
+      color: var(--plum); line-height: 1.6;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .post-body h2 {
+      font-family: 'Cormorant', serif;
+      font-size: 1.7rem; font-weight: 700;
+      color: var(--plum); margin: 2.5rem 0 1rem;
+      line-height: 1.2;
+    }
+    .post-body h3 {
+      font-family: 'Cormorant', serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--plum); margin: 2rem 0 0.8rem;
+    }
+    .post-body p {
+      font-size: 0.95rem; color: var(--gray);
+      line-height: 1.85; margin-bottom: 1.4rem;
+    }
+    .post-body blockquote {
+      font-family: 'Cormorant', serif;
+      font-size: 1.2rem; font-style: italic;
+      color: var(--plum); line-height: 1.6;
+      border-left: 3px solid var(--gold);
+      padding: 1rem 0 1rem 1.8rem;
+      margin: 2.5rem 0;
+      background: rgba(201,145,58,0.04);
+      border-radius: 0 4px 4px 0;
+    }
+    .post-body ul, .post-body ol {
+      margin: 0 0 1.4rem 1.5rem;
+    }
+    .post-body li {
+      font-size: 0.95rem; color: var(--gray);
+      line-height: 1.8; margin-bottom: 0.4rem;
+    }
+    .post-body li::marker { color: var(--gold); }
+
+    /* Data highlight box */
+    .data-box {
+      background: var(--plum);
+      border-radius: 6px;
+      padding: 2.5rem;
+      margin: 3rem 0;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background-color: var(--plum);
+    }
+    .data-item {
+      padding: 1.5rem 2rem;
+      background: rgba(255,255,255,0.04);
+      text-align: center;
+    }
+    .data-num {
+      font-family: 'Cormorant', serif;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--gold-lt); line-height: 1;
+    }
+    .data-num sup { font-size: 1.2rem; vertical-align: super; }
+    .data-label {
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.35); margin-top: 0.4rem;
+    }
+
+    /* Sidebar */
+    .post-sidebar { position: sticky; top: 96px; }
+
+    .sidebar-section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .sidebar-title {
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem; border-bottom: 1px solid var(--border);
+    }
+    .sidebar-toc { display: flex; flex-direction: column; gap: 0.7rem; }
+    .toc-link {
+      font-size: 0.82rem; color: var(--gray); font-weight: 600;
+      padding-left: 0.8rem; border-left: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .toc-link:hover { color: var(--plum); border-color: var(--gold); }
+
+    .sidebar-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag-pill {
+      font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--plum); background: var(--cream);
+      padding: 0.3rem 0.7rem; border-radius: 2px;
+    }
+
+    /* Related posts */
+    .related-posts { padding: 80px 6vw; background: var(--cream); }
+    .related-title {
+      font-family: 'Cormorant', serif; font-size: 1.8rem; font-weight: 700;
+      color: var(--plum); margin-bottom: 3rem;
+    }
+    .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .related-card {
+      background: white; border-radius: 4px; overflow: hidden;
+      border: 1px solid var(--border); transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .related-card:hover { box-shadow: 0 8px 32px rgba(46,26,53,0.1); transform: translateY(-3px); }
+    .related-card-visual { height: 140px; }
+    .rcv-1 { background: linear-gradient(135deg, #2E1A35, #6B4480); }
+    .rcv-2 { background: linear-gradient(135deg, #1E2A20, #4A7052); }
+    .rcv-3 { background: linear-gradient(135deg, #2A1F15, #8B5E2A); }
+    .related-card-body { padding: 1.5rem; }
+    .related-card-cat { font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+    .related-card-title { font-family: 'Cormorant', serif; font-size: 1rem; font-weight: 700; color: var(--plum); line-height: 1.3; margin-bottom: 0.8rem; }
+    .related-card-link { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+
+    /* FOOTER */
+    .site-footer { background: var(--charcoal); padding: 3rem 6vw; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-brand-name { font-family: 'Cormorant', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold); letter-spacing: 0.1em; }
+    .footer-brand-sub { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 3px; }
+    .footer-links { display: flex; gap: 2rem; list-style: none; }
+    .footer-links a { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.28); transition: color 0.2s; }
+    .footer-links a:hover { color: var(--gold-lt); }
+    .footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.18); }
+
+    @media (max-width: 860px) {
+      .post-layout { grid-template-columns: 1fr; }
+      .post-sidebar { position: static; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .data-box { grid-template-columns: 1fr; }
+      .site-nav .nav-item:not(.nav-cta) { display: none; }
+    }
+    @media (max-width: 560px) { .related-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <a href="index.html" class="header-brand">
+    <span class="brand-name">P<span>E</span>ARL</span>
+    <span class="brand-full">Prime Ever Ayurvedic Research Laboratories</span>
+  </a>
+  <nav class="site-nav">
+    <a href="index.html"  class="nav-item">Home</a>
+    <a href="blog.html"   class="nav-item">Blog</a>
+    <a href="post.html"   class="nav-item active">Research</a>
+    <a href="index.html#contact" class="nav-item nav-cta">Contact Us</a>
+  </nav>
+</header>
+
+<!-- POST HERO -->
+<section class="post-hero">
+  <div class="post-hero-inner">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="blog.html">Blog</a>
+      <span class="breadcrumb-sep">›</span>
+      <span>Cap. Plasmonil at the First Malaria World Congress</span>
+    </div>
+    <div class="post-hero-cat">Anti-Malarial Research</div>
+    <h1 class="post-hero-title">Cap. Plasmonil at the First<br>Malaria World Congress, Melbourne</h1>
+    <div class="post-hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">Author</span>
+        <span class="meta-value">Dr. Prakash U. Tahiliani</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Published</span>
+        <span class="meta-value">July 2018 · Melbourne, Australia</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Category</span>
+        <span class="meta-value">Conference Presentation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POST BODY -->
+<div class="post-layout">
+  <article class="post-article">
+
+    <p class="post-lead">
+      In July 2018, Dr. Prakash U. Tahiliani presented PEARL's integrative approach to malaria treatment at the First Malaria World Congress in Melbourne, Australia — bringing four decades of clinical evidence from Navsari, Gujarat, to one of the world's most prestigious forums for infectious disease research.
+    </p>
+
+    <div class="post-body">
+
+      <div class="data-box">
+        <div class="data-item">
+          <div class="data-num">40<sup>K+</sup></div>
+          <div class="data-label">Cases Treated</div>
+        </div>
+        <div class="data-item">
+          <div class="data-num">0</div>
+          <div class="data-label">Adverse Effects Reported</div>
+        </div>
+        <div class="data-item">
+          <div class="data-num">↓</div>
+          <div class="data-label">Reduced Recurrence Rate</div>
+        </div>
+      </div>
+
+      <h2>The Global Malaria Crisis</h2>
+      <p>
+        Malaria remains one of the world's most pressing public health challenges. Every year, over 500 million people are affected, with an estimated 3 million fatalities — one death every five seconds. In tropical and sub-tropical regions, the disease is both endemic and evolving, with the Plasmodium parasite demonstrating a remarkable and alarming capacity to develop resistance to successive generations of anti-malarial drugs.
+      </p>
+      <p>
+        The current landscape of anti-malarial treatment is defined by a cascade of failures. Chloroquine, once the cornerstone of treatment, has been rendered largely ineffective across most of the world. Sulphadoxine-Pyrimethamine combinations followed the same trajectory. Mefloquine and Halofantrine faced similar fates. Most recently, resistance to Artemisinin derivatives — the current standard of care — has been reported across Southeast Asia and beyond.
+      </p>
+
+      <h2>The Diagnostic Challenge</h2>
+      <p>
+        Compounding the treatment problem is a fundamental diagnostic one. Almost all symptoms of malaria are non-specific — fever, fatigue, headache — shared with dozens of other conditions. Falciparum malaria in particular frequently presents with atypical symptoms, and fever may be low-grade or absent altogether.
+      </p>
+      <p>
+        Most significantly, the standard diagnostic tool — peripheral smear examination — wrongly returns negative results in approximately 70–80% of cases, even when the malarial parasite is present in the blood. This high false-negative rate means that countless cases go undiagnosed, untreated, or mistreated.
+      </p>
+
+      <blockquote>
+        "ESR, while non-specific, provides a uniquely useful diagnostic signal in Falciparum malaria — particularly in cases where peripheral smear results cannot be trusted."
+        <footer style="margin-top:0.8rem; font-size:0.75rem; color:var(--gray); font-style:normal;">— Dr. Prakash U. Tahiliani, First Malaria World Congress, Melbourne 2018</footer>
+      </blockquote>
+
+      <h2>The PEARL Approach: Engaging the Host</h2>
+      <p>
+        The pharmacological logic underlying most anti-malarial drugs is straightforward: identify and kill the Plasmodium parasite. Cap. Plasmonil starts from a fundamentally different premise. Rather than targeting the pathogen directly, Plasmonil targets the host — specifically, the host's immune system and the rheological properties of the blood that are severely disrupted during malarial infection.
+      </p>
+
+      <h3>Blood Rheology: The Overlooked Dimension</h3>
+      <p>
+        One of the critical but underappreciated aspects of malarial pathology is the disturbance of blood rheological properties — the physical behaviour of blood as it flows through vessels and tissues. This disruption, particularly in Falciparum malaria, contributes significantly to the disease's most life-threatening manifestations, including cerebral malaria and multi-organ failure.
+      </p>
+      <p>
+        The majority of anti-malarial drugs do not address this dimension. Cap. Plasmonil's Ayurvedic formulation incorporates botanicals specifically chosen for their ability to support healthy blood rheology alongside their immunomodulatory properties — addressing both the pathological cascade and the parasite's ecological niche simultaneously.
+      </p>
+
+      <h3>Immune Activation, Not Suppression</h3>
+      <p>
+        A fundamental problem with repeated or high-dose use of conventional anti-malarials is their tendency to deplete the body's existing immunity against malaria. This creates a vicious cycle: each treatment episode weakens the patient's defences, increasing vulnerability to future infection and reducing the effectiveness of the same drug over time.
+      </p>
+      <p>
+        Plasmonil's formulation is designed with the opposite intent — to activate and strengthen the body's innate immune response so that the immune system itself becomes the primary weapon against Plasmodium. The clinical evidence supports this: across 40,000+ treated cases, recurrence rates are significantly lower than those observed with standard allopathic regimens, and zero adverse effects have been reported.
+      </p>
+
+      <h2>Clinical Outcomes Presented at Melbourne</h2>
+      <p>
+        At the First Malaria World Congress, Dr. Tahiliani presented aggregate clinical data from PEARL's four decades of practice in Navsari, Gujarat — one of India's regions with historically high malaria burden. The data demonstrated:
+      </p>
+      <ul>
+        <li>Effective parasite clearance in cases of multi-drug-resistant Falciparum malaria where conventional treatments had failed</li>
+        <li>Zero reported adverse effects across the entire treated cohort</li>
+        <li>A significantly reduced rate of malaria recurrence in the 12 months following treatment</li>
+        <li>Measurable improvement in ESR and blood rheological markers post-treatment</li>
+        <li>Improvement in patients' overall immune profiles, as reflected in subsequent infection rates</li>
+      </ul>
+
+      <h2>Conclusion: A Paradigm for the Drug-Resistance Era</h2>
+      <p>
+        The growing crisis of anti-malarial drug resistance demands new frameworks, not just new molecules. As long as treatment strategies focus exclusively on killing Plasmodium directly, the parasite's extraordinary adaptive capacity will continue to outpace pharmaceutical development.
+      </p>
+      <p>
+        PEARL's presentation at the First Malaria World Congress positioned integrative Ayurvedic medicine not as an alternative to be considered when conventional treatment fails — but as a fundamentally more durable model for the age of drug resistance. One that works with the body rather than against the pathogen, and has four decades of clinical evidence to support it.
+      </p>
+
+    </div>
+  </article>
+
+  <!-- SIDEBAR -->
+  <aside class="post-sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-title">In This Article</div>
+      <div class="sidebar-toc">
+        <a href="#" class="toc-link">The Global Malaria Crisis</a>
+        <a href="#" class="toc-link">The Diagnostic Challenge</a>
+        <a href="#" class="toc-link">The PEARL Approach</a>
+        <a href="#" class="toc-link">Blood Rheology</a>
+        <a href="#" class="toc-link">Immune Activation</a>
+        <a href="#" class="toc-link">Clinical Outcomes</a>
+        <a href="#" class="toc-link">Conclusion</a>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">About the Author</div>
+      <p style="font-size:0.82rem; color:var(--gray); line-height:1.7; margin-bottom:1rem;">
+        <strong style="color:var(--plum);">Dr. Prakash U. Tahiliani</strong><br>
+        Founder &amp; Medical Director, PEARL<br>
+        M.B.B.S. (1981) · 40+ Years Practice
+      </p>
+      <p style="font-size:0.78rem; color:var(--gray); line-height:1.65;">Pioneer in integrative anti-malarial medicine, Dr. Tahiliani has presented his research at 9 international scientific conferences across four continents.</p>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-title">Tags</div>
+      <div class="sidebar-tags">
+        <span class="tag-pill">Malaria</span>
+        <span class="tag-pill">Plasmonil</span>
+        <span class="tag-pill">Ayurveda</span>
+        <span class="tag-pill">Drug Resistance</span>
+        <span class="tag-pill">Immunology</span>
+        <span class="tag-pill">Clinical Research</span>
+        <span class="tag-pill">Integrative Medicine</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section" style="background:var(--plum); border-color:transparent;">
+      <div class="sidebar-title" style="color:rgba(255,255,255,0.35); border-color:rgba(255,255,255,0.08);">Order Cap. Plasmonil</div>
+      <p style="font-size:0.8rem; color:rgba(255,255,255,0.45); line-height:1.65; margin-bottom:1.2rem;">Available pan-India via Meesho — India's leading social commerce platform.</p>
+      <a href="https://meesho.com/PRIMEEVERAYURVEDICRESEARCHLABORATOR" target="_blank"
+         style="display:inline-block; background:var(--gold); color:white; padding:0.7rem 1.5rem; border-radius:3px; font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; transition:background 0.2s;">
+        Shop on Meesho →
+      </a>
+    </div>
+  </aside>
+</div>
+
+<!-- RELATED POSTS -->
+<section class="related-posts">
+  <h2 class="related-title">Related Research</h2>
+  <div class="related-grid">
+    <a href="post.html" class="related-card">
+      <div class="related-card-visual rcv-1"></div>
+      <div class="related-card-body">
+        <div class="related-card-cat">Immunology</div>
+        <div class="related-card-title">Immune Activation vs. Suppression: Why the Paradigm Must Shift</div>
+        <div class="related-card-link">Read More →</div>
+      </div>
+    </a>
+    <a href="post.html" class="related-card">
+      <div class="related-card-visual rcv-2"></div>
+      <div class="related-card-body">
+        <div class="related-card-cat">Blood Rheology</div>
+        <div class="related-card-title">The Overlooked Dimension of Malaria: Blood Rheological Disturbances</div>
+        <div class="related-card-link">Read More →</div>
+      </div>
+    </a>
+    <a href="post.html" class="related-card">
+      <div class="related-card-visual rcv-3"></div>
+      <div class="related-card-body">
+        <div class="related-card-cat">Drug Resistance</div>
+        <div class="related-card-title">The Artemisinin Crisis: What Integrative Medicine Offers Next</div>
+        <div class="related-card-link">Read More →</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div>
+    <div class="footer-brand-name">PEARL</div>
+    <div class="footer-brand-sub">Prime Ever Ayurvedic Research Laboratories</div>
+  </div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="post.html">Research</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2001–2025 PEARL. All Rights Reserved.</p>
+</footer>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 20); });
+</script>
+</body>
+</html>
